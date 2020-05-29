@@ -20,12 +20,10 @@ class LWRSpider(scrapy.Spider):
     # @param response - HTML response
     ###
     def parse(self, response):
-        # extension for each 'news article' in HTML source
+        # extension for different sections of a given article
         ARTICLE_SELECTOR = '.uk-panel-title'
         CONTENT_SELECTOR = '.uk-margin'
         IMAGE_SELECTOR = '.uk-overlay.uk-overlay-hover '
-
-        
 
         # parallel arrays of article components
         titleList = response.css(ARTICLE_SELECTOR)
@@ -38,15 +36,18 @@ class LWRSpider(scrapy.Spider):
         # Iterate through every article found
         for articleIndx in range(len(titleList)):
 
-            # CSS extension for title in each article
+            # Extensions for each field:
+            # CSS:
             TITLE_SELECTOR = 'a ::text'
             DESCRIPTION_SELECTOR = 'p ::text'
+            # xPath
             LINK_SELECTOR = 'a/@href'
             IMAGE_EXTENSION = 'img/@src'
-
+            
+            # Will append to end of this string when constructing image link.
             IMAGE_URL_START = 'https://www.livestockwaterrecycling.com/'
 
-            
+            # resulting dictionary/map of each article object
             yield {
                 'title': titleList[articleIndx].css(TITLE_SELECTOR).extract_first(),
                 'content': contentList[articleIndx].css(DESCRIPTION_SELECTOR).extract_first(),
