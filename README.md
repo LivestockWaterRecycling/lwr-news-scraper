@@ -9,6 +9,15 @@ The purpose of this program is to fetch news articles from the following news pa
 The reason these news articles are being extracted is to utlimately show news in the LWR mobile android/ios application:
 - [Application Repository](https://github.com/LivestockWaterRecycling/ipad-android-mobile-application)
 
+## General Information
+
+- This repository should be public, as we can treat the output .json files the script produces as a nomal JSON API.
+- This means we can access these .json files through a url, such as: 
+
+   __articles.json__: https://github.com/LivestockWaterRecycling/lwr-news-scraper/blob/master/articles.json
+
+- Ultimately, we want to configure this script to run every couple of days or so in order for the data to stay updated. This process can be automated by creating a bash script to launch the program and automating a commit and push to the repository.
+
 ## Getting Started
 
 ### Dependencies
@@ -51,4 +60,4 @@ Scrapy applications can be run from the command line, so that's how we will do i
 ```
 
 4. If no error messages appear in the output, there should now be a __.JSON__ file present in the base directory of the project titled,
-__articles.json__. As the name suggests, this file holds article objects in JSON format containing three fields: Title, content, and link (url).
+__articles.json__. As the name suggests, this file holds article objects in JSON format containing four fields: Title, content, link (url), and image url.
