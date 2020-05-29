@@ -51,4 +51,4 @@ Scrapy applications can be run from the command line, so that's how we will do i
 ```
 
 4. If no error messages appear in the output, there should now be a __.JSON__ file present in the base directory of the project titled,
-__articles.json__. As the name suggests, this file holds article objects in JSON format containing three fields: Title, content, and link (url).
+__articles.json__. As the name suggests, this file holds article objects in JSON format containing four fields: Title, content, link (url), and image url.
