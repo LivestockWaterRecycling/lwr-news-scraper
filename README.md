@@ -33,7 +33,7 @@ You can follow [this guide](https://docs.scrapy.org/en/latest/intro/install.html
 
 If you ever need to edit the code that actually scrapes the data, the assosciated python file is located in lwr_news_scraper/spiders/... 
 
-The spiders folder contains all the crawlers in this project. In our case, it just contains one: __lwr_spider__.
+The spiders folder contains all the crawlers in this project. In our case, it just contains one: __lwr_spider.py__.
 
 ### Running the program
 
