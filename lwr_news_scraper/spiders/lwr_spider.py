@@ -30,8 +30,7 @@ class LWRSpider(scrapy.Spider):
         contentList = response.css(CONTENT_SELECTOR)
         imageList = response.css(IMAGE_SELECTOR)
 
-        print("\n\n\n" + str(len(imageList)) + "\n\n\n")
-        print(imageList)
+        
 
         # Iterate through every article found
         for articleIndx in range(len(titleList)):
