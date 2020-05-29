@@ -37,10 +37,10 @@ class LWRSpider(scrapy.Spider):
 
             # Extensions for each field:
             # CSS:
-            TITLE_SELECTOR = 'a ::text'
-            DESCRIPTION_SELECTOR = 'p ::text'
+            TITLE_EXTENSION = 'a ::text'
+            DESCRIPTION_EXTENSION = 'p ::text'
             # xPath
-            LINK_SELECTOR = 'a/@href'
+            LINK_EXTENSION = 'a/@href'
             IMAGE_EXTENSION = 'img/@src'
             
             # Will append to end of this string when constructing image link.
@@ -48,9 +48,9 @@ class LWRSpider(scrapy.Spider):
 
             # resulting dictionary/map of each article object
             yield {
-                'title': titleList[articleIndx].css(TITLE_SELECTOR).extract_first(),
-                'content': contentList[articleIndx].css(DESCRIPTION_SELECTOR).extract_first(),
-                'link': titleList[articleIndx].xpath(LINK_SELECTOR).extract_first(),
+                'title': titleList[articleIndx].css(TITLE_EXTENSION).extract_first(),
+                'content': contentList[articleIndx].css(DESCRIPTION_EXTENSION).extract_first(),
+                'link': titleList[articleIndx].xpath(LINK_EXTENSION).extract_first(),
                 'image': IMAGE_URL_START + imageList[articleIndx].xpath(IMAGE_EXTENSION).extract_first(),
             }
 
