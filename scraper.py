@@ -20,23 +20,24 @@ class LWRSpider(scrapy.Spider):
         # extension for each 'news article' in HTML source
         ARTICLE_SELECTOR = '.uk-panel-title'
         CONTENT_SELECTOR = '.uk-margin'
+        
 
-        # parallel arrays of articles and content
-        articleList = response.css(ARTICLE_SELECTOR)
+        # parallel arrays of article components
+        titleList = response.css(ARTICLE_SELECTOR)
         contentList = response.css(CONTENT_SELECTOR)
 
         # Iterate through every article found
-        for articleIndx in range(len(articleList)):
+        for articleIndx in range(len(titleList)):
 
             # CSS extension for title in each article
             TITLE_SELECTOR = 'a ::text'
             DESCRIPTION_SELECTOR = 'p ::text'
+            LINK_SELECTOR = 'href ::text'
             
             yield {
-                # Title field will be the first instance of TITLE_SELECTOR in each article
-                'title': articleList[articleIndx].css(TITLE_SELECTOR).extract_first(),
+                'title': titleList[articleIndx].css(TITLE_SELECTOR).extract_first(),
                 'content': contentList[articleIndx].css(DESCRIPTION_SELECTOR).extract_first(),
-                
+                'link': titleList[articleIndx].xpath('a/@href').extract_first(),
             }
 
         
