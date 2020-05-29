@@ -22,8 +22,12 @@ The reason these news articles are being extracted is to utlimately show news in
 
 ### Dependencies
 
-In order to be able to use this program, you must have [scrapy](https://scrapy2.readthedocs.io/en/latest/#) installed.
+- Make sure you have python 3.5 or above to ensure proper installation of scrappy.
+
+- As you can guess, in order to be able to use this program you must have [scrapy](https://scrapy2.readthedocs.io/en/latest/#) installed.
 You can follow [this guide](https://docs.scrapy.org/en/latest/intro/install.html) to download scrapy if you have not used it before.
+
+
 
 ### Important Files
 
