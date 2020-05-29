@@ -26,7 +26,7 @@ The spiders folder contains all the crawlers in this project. In our case, it ju
 
 Scrapy applications can be run from the command line, so that's how we will do it:
 
-1. Open a terminal and navigate to this project's directory
+1. Open a terminal and navigate to the base directory of this project (i.e .../lwr-news-scraper/)
 2. Type this command into the terminal:  
 ```
       scrapy crawl lwr_spider
