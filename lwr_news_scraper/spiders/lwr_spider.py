@@ -10,7 +10,10 @@ import scrapy
 
 class LWRSpider(scrapy.Spider):
     name = "lwr_spider"
-    start_urls = ['https://www.livestockwaterrecycling.com/newsroom/press.html']
+
+    # urls that this spider crawls through. Crawls through 1 URL at a time.
+    start_urls = ['https://www.livestockwaterrecycling.com/newsroom/press.html',
+                  'https://www.livestockwaterrecycling.com/newsroom/featured.html' ]
 
     ###
     # Function that parses a websites HTML source
@@ -20,6 +23,7 @@ class LWRSpider(scrapy.Spider):
         # extension for each 'news article' in HTML source
         ARTICLE_SELECTOR = '.uk-panel-title'
         CONTENT_SELECTOR = '.uk-margin'
+
         
 
         # parallel arrays of article components
@@ -32,12 +36,18 @@ class LWRSpider(scrapy.Spider):
             # CSS extension for title in each article
             TITLE_SELECTOR = 'a ::text'
             DESCRIPTION_SELECTOR = 'p ::text'
-            LINK_SELECTOR = 'href ::text'
+            
+            if(response.request.url == 'https://www.livestockwaterrecycling.com/newsroom/press.html' ):
+                LINK_SELECTOR = 'a/@href'
+                link = titleList[articleIndx].xpath(LINK_SELECTOR).extract_first()
+            else:
+                LINK_SELECTOR = 'a/@href'
+                link = titleList[articleIndx].xpath(LINK_SELECTOR).extract_first()
             
             yield {
                 'title': titleList[articleIndx].css(TITLE_SELECTOR).extract_first(),
                 'content': contentList[articleIndx].css(DESCRIPTION_SELECTOR).extract_first(),
-                'link': titleList[articleIndx].xpath('a/@href').extract_first(),
+                'link': link,
             }
 
         
