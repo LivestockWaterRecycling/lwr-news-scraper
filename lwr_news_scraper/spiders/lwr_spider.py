@@ -36,18 +36,13 @@ class LWRSpider(scrapy.Spider):
             # CSS extension for title in each article
             TITLE_SELECTOR = 'a ::text'
             DESCRIPTION_SELECTOR = 'p ::text'
+            LINK_SELECTOR = 'a/@href'
             
-            if(response.request.url == 'https://www.livestockwaterrecycling.com/newsroom/press.html' ):
-                LINK_SELECTOR = 'a/@href'
-                link = titleList[articleIndx].xpath(LINK_SELECTOR).extract_first()
-            else:
-                LINK_SELECTOR = 'a/@href'
-                link = titleList[articleIndx].xpath(LINK_SELECTOR).extract_first()
             
             yield {
                 'title': titleList[articleIndx].css(TITLE_SELECTOR).extract_first(),
                 'content': contentList[articleIndx].css(DESCRIPTION_SELECTOR).extract_first(),
-                'link': link,
+                'link': titleList[articleIndx].xpath(LINK_SELECTOR).extract_first(),
             }
 
         
