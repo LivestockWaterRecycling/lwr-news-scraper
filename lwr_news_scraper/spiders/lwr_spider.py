@@ -23,12 +23,17 @@ class LWRSpider(scrapy.Spider):
         # extension for each 'news article' in HTML source
         ARTICLE_SELECTOR = '.uk-panel-title'
         CONTENT_SELECTOR = '.uk-margin'
+        IMAGE_SELECTOR = '.uk-overlay.uk-overlay-hover '
 
         
 
         # parallel arrays of article components
         titleList = response.css(ARTICLE_SELECTOR)
         contentList = response.css(CONTENT_SELECTOR)
+        imageList = response.css(IMAGE_SELECTOR)
+
+        print("\n\n\n" + str(len(imageList)) + "\n\n\n")
+        print(imageList)
 
         # Iterate through every article found
         for articleIndx in range(len(titleList)):
@@ -37,12 +42,16 @@ class LWRSpider(scrapy.Spider):
             TITLE_SELECTOR = 'a ::text'
             DESCRIPTION_SELECTOR = 'p ::text'
             LINK_SELECTOR = 'a/@href'
-            
+            IMAGE_EXTENSION = 'img/@src'
+
+            IMAGE_URL_START = 'https://www.livestockwaterrecycling.com/'
+
             
             yield {
                 'title': titleList[articleIndx].css(TITLE_SELECTOR).extract_first(),
                 'content': contentList[articleIndx].css(DESCRIPTION_SELECTOR).extract_first(),
                 'link': titleList[articleIndx].xpath(LINK_SELECTOR).extract_first(),
+                'image': IMAGE_URL_START + imageList[articleIndx].xpath(IMAGE_EXTENSION).extract_first(),
             }
 
         
