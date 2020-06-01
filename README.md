@@ -31,7 +31,7 @@ You can follow [this guide](https://docs.scrapy.org/en/latest/intro/install.html
 
 ### Important Files
 
-If you ever need to edit the code that actually scrapes the data, the assosciated python file is located in lwr_news_scraper/spiders/... 
+If you ever need to edit the code that actually scrapes the data, the assosciated python files are located in lwr_news_scraper/spiders/... 
 
 The spiders folder contains all the crawlers in this project. In our case, it contains two: 
 * __lwr_spider_press.py__
