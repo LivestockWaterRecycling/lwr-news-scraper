@@ -14,7 +14,7 @@ BOT_NAME = 'lwr_news_scraper'
 SPIDER_MODULES = ['lwr_news_scraper.spiders']
 NEWSPIDER_MODULE = 'lwr_news_scraper.spiders'
 
-#Export as CSV Feed
+#Export as JSON Feed
 FEED_FORMAT = "json"
 FEED_URI = "articles.json"
 
@@ -68,9 +68,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'lwr_news_scraper.pipelines.LwrNewsScraperPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'lwr_news_scraper.pipelines.LwrNewsScraperPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

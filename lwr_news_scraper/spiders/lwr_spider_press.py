@@ -10,6 +10,16 @@ import scrapy
 class LWRSpider(scrapy.Spider):
     name = "lwr_spider_press"
 
+    
+    def __init__(self, page_name, *args, **kwargs):
+        self.page = page_name
+        super(LWRSpider, self).__init__(*args, **kwargs)
+    
+    #change output feed uri
+    customs_settings = {
+      'FEED_URI' : 'press_articles.json'
+     }
+
     # urls that this spider crawls through. Crawls through 1 URL at a time.
     start_urls = [
                   'https://www.livestockwaterrecycling.com/newsroom/press.html' ]

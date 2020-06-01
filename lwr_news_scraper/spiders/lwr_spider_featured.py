@@ -8,11 +8,17 @@
 import scrapy
 
 class LWRSpider(scrapy.Spider):
-    name = "lwr_spider_featured"
-
+    
     # urls that this spider crawls through. Crawls through 1 URL at a time.
     start_urls = [
                   'https://www.livestockwaterrecycling.com/newsroom/featured.html' ]
+    name = "lwr_spider_featured"
+
+    def __init__(self, page_name, *args, **kwargs):
+        self.page = page_name
+        super(LWRSpider, self).__init__(*args, **kwargs)
+
+    
 
     ###
     # Function that parses a websites HTML source
