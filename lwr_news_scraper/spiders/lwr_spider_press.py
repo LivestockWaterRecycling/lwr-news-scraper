@@ -11,10 +11,6 @@ class LWRSpider(scrapy.Spider):
     name = "lwr_spider_press"
 
     
-    def __init__(self, page_name, *args, **kwargs):
-        self.page = page_name
-        super(LWRSpider, self).__init__(*args, **kwargs)
-    
     #change output feed uri
     customs_settings = {
       'FEED_URI' : 'press_articles.json'
