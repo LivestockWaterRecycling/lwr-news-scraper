@@ -1,6 +1,5 @@
 ###
-# This program uses scrapy to 'crawl' or 'spider' through the news page of the LWR Website.
-# It will crawl two specific pages in the LWR website - newsroom/press and newsroom/featured
+# This program uses scrapy to 'crawl' or 'spider' through the news/featured page of the LWR Website.
 #
 # Author: Oscar Jaimes
 # Date: 29/05/2020
@@ -9,10 +8,10 @@
 import scrapy
 
 class LWRSpider(scrapy.Spider):
-    name = "lwr_spider"
+    name = "lwr_spider_featured"
 
     # urls that this spider crawls through. Crawls through 1 URL at a time.
-    start_urls = ['https://www.livestockwaterrecycling.com/newsroom/press.html',
+    start_urls = [
                   'https://www.livestockwaterrecycling.com/newsroom/featured.html' ]
 
     ###
