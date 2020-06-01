@@ -14,7 +14,7 @@ The reason these news articles are being extracted is to utlimately show news in
 - This repository should be public, as we can treat the output .json files the script produces as a nomal JSON API.
 - This means we can access these .json files through a url, such as: 
 
-   __articles.json__: https://github.com/LivestockWaterRecycling/lwr-news-scraper/blob/master/articles.json
+   __articles.json__: https://livestockwaterrecycling.github.io/lwr-news-scraper/articles.json
 
 - Ultimately, we want to configure this script to run every couple of days or so in order for the data to stay updated. This process can be automated by creating a bash script to launch the program and automating a commit and push to the repository.
 
@@ -31,9 +31,13 @@ You can follow [this guide](https://docs.scrapy.org/en/latest/intro/install.html
 
 ### Important Files
 
-If you ever need to edit the code that actually scrapes the data, the assosciated python file is located in lwr_news_scraper/spiders/... 
+If you ever need to edit the code that actually scrapes the data, the assosciated python files are located in lwr_news_scraper/spiders/... 
 
-The spiders folder contains all the crawlers in this project. In our case, it just contains one: __lwr_spider.py__.
+The spiders folder contains all the crawlers in this project. In our case, it contains two: 
+* __lwr_spider_press.py__
+* __lwr_spider_featured.py__
+
+The reason we need two different spiders/crawlers is that the HTML structure of the press and featured page differ slightly. When first wrtiting this program, it was assumed that both pages shared the same HTML structure and cause bugs when tryig to scrape the image URL. Keep this in mind if more sites are added to the program.
 
 ### Running the program
 
@@ -65,3 +69,20 @@ Scrapy applications can be run from the command line, so that's how we will do i
 
 4. If no error messages appear in the output, there should now be a __.JSON__ file present in the base directory of the project titled,
 __articles.json__. As the name suggests, this file holds article objects in JSON format containing four fields: Title, content, link (url), and image url.
+
+
+### JSON Structure
+
+Each Article object will be represend in JSON in the following form:
+
+```
+         {
+            "title" : "Article Title",
+            "content" : "Article Body",
+            "link" : "link_to_article.html",
+            "image" : "link_to_image.html"
+            
+         }
+```
+The articles.json file that this program generates holds an array of JSON Article objects. 
+So, when accessing through API, treat initial data as such.
