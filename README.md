@@ -44,10 +44,17 @@ The reason we need two different spiders/crawlers is that the HTML structure of 
 Scrapy applications can be run from the command line, so that's how we will do it:
 
 1. Open a terminal and navigate to the base directory of this project (i.e .../lwr-news-scraper/)
-2. Type this command into the terminal:  
+2. Type this command into the terminal to run the crawler for news/press:  
 ```
-      scrapy crawl lwr_spider
+      scrapy crawl lwr_spider_press -o press.json
+      
+      NOTE: -o filename.json is the command line argument for the output file.
+      Make sure when running lwr_spider_press, the output file is press.json, abd
+      when running lwr_spider_featured, the output file is featured.json
   ```
+  
+   
+  
 3. Press Enter, and you should see something similar to this (this is just the first part, there is a lot more that is not pasted here):
 
 ```
