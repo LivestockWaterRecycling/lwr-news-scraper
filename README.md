@@ -78,9 +78,11 @@ Each Article object will be represend in JSON in the following form:
 ```
          {
             "title" : "Article Title",
-            "content" : "Article Body"
-            "link" : "link_to_article.html"
+            "content" : "Article Body",
+            "link" : "link_to_article.html",
             "image" : "link_to_image.html"
             
          }
 ```
+The articles.json file that this program generates holds an array of JSON Article objects. 
+So, when accessing through API, treat initial data as such.
