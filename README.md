@@ -37,17 +37,24 @@ The spiders folder contains all the crawlers in this project. In our case, it co
 * __lwr_spider_press.py__
 * __lwr_spider_featured.py__
 
-The reason we need two different spiders/crawlers is that the HTML structure of the press and featured page differ slightly. When first wrtiting this program, it was assumed that both pages shared the same HTML structure and cause bugs when tryig to scrape the image URL. Keep this in mind if more sites are added to the program.
+The reason we need two different spiders/crawlers is that the HTML structure of the press and featured page differ slightly. When first wrtiting this program, it was assumed that both pages shared the same HTML structure and cause bugs when trying to scrape the image URL. Keep this in mind if more sites are added to the program.
 
 ### Running the program
 
 Scrapy applications can be run from the command line, so that's how we will do it:
 
 1. Open a terminal and navigate to the base directory of this project (i.e .../lwr-news-scraper/)
-2. Type this command into the terminal:  
+2. Type this command into the terminal to run the crawler for news/press:  
 ```
-      scrapy crawl lwr_spider
+      scrapy crawl lwr_spider_press -o press.json
+      
+      NOTE: -o filename.json is the command line argument for the output file.
+      Make sure when running lwr_spider_press, the output file is press.json, abd
+      when running lwr_spider_featured, the output file is featured.json
   ```
+  
+   
+  
 3. Press Enter, and you should see something similar to this (this is just the first part, there is a lot more that is not pasted here):
 
 ```
@@ -68,12 +75,12 @@ Scrapy applications can be run from the command line, so that's how we will do i
 ```
 
 4. If no error messages appear in the output, there should now be a __.JSON__ file present in the base directory of the project titled,
-__articles.json__. As the name suggests, this file holds article objects in JSON format containing four fields: Title, content, link (url), and image url.
+__featured.json__ or __press.json__, depending on which command you ran. As the name suggests, this file holds article objects in JSON format containing four fields: Title, content, link (url), and image url.
 
 
 ### JSON Structure
 
-Each Article object will be represend in JSON in the following form:
+Each Article object will be represented in JSON in the following form:
 
 ```
          {
@@ -84,5 +91,5 @@ Each Article object will be represend in JSON in the following form:
             
          }
 ```
-The articles.json file that this program generates holds an array of JSON Article objects. 
+The json files that this program generates holds an array of JSON Article objects. 
 So, when accessing through API, treat initial data as such.
