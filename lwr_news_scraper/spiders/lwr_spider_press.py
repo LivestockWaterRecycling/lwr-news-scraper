@@ -7,11 +7,15 @@
 
 import scrapy
 
-class LWRSpider(scrapy.Spider):
+class LWRSpiderPress(scrapy.Spider):
     name = "lwr_spider_press"
 
     # urls that this spider crawls through. Crawls through 1 URL at a time.
     start_urls = ['https://www.livestockwaterrecycling.com/newsroom/press.html' ]
+
+    custom_settings = {
+        'FEED_URI': 'press.json',
+    }
 
     ###
     # Function that parses a websites HTML source

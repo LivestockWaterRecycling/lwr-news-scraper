@@ -7,13 +7,17 @@
 
 import scrapy
 
-class LWRSpider(scrapy.Spider):
+class LWRSpiderFeatured(scrapy.Spider):
     
     name = "lwr_spider_featured"
 
     # urls that this spider crawls through. Crawls through 1 URL at a time.
     start_urls = ['https://www.livestockwaterrecycling.com/newsroom/featured.html' ]
         
+
+    custom_settings = {
+        'FEED_URI': 'featured.json',
+    }
 
     ###
     # Function that parses a websites HTML source
@@ -54,5 +58,3 @@ class LWRSpider(scrapy.Spider):
             }
 
         
-
-    
