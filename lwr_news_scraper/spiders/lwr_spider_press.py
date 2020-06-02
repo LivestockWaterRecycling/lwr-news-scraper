@@ -10,15 +10,8 @@ import scrapy
 class LWRSpider(scrapy.Spider):
     name = "lwr_spider_press"
 
-    
-    #change output feed uri
-    customs_settings = {
-      'FEED_URI' : 'press_articles.json'
-     }
-
     # urls that this spider crawls through. Crawls through 1 URL at a time.
-    start_urls = [
-                  'https://www.livestockwaterrecycling.com/newsroom/press.html' ]
+    start_urls = ['https://www.livestockwaterrecycling.com/newsroom/press.html' ]
 
     ###
     # Function that parses a websites HTML source
@@ -34,10 +27,6 @@ class LWRSpider(scrapy.Spider):
         titleList = response.css(ARTICLE_SELECTOR)
         contentList = response.css(CONTENT_SELECTOR)
         imageList = response.css(IMAGE_SELECTOR)
-
-        print("\n\n\n")
-        print(imageList)
-        print("\n\n\n")
 
         # Iterate through every article found
         for articleIndx in range(len(titleList)):

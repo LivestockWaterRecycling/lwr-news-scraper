@@ -9,10 +9,11 @@ import scrapy
 
 class LWRSpider(scrapy.Spider):
     
+    name = "lwr_spider_featured"
+
     # urls that this spider crawls through. Crawls through 1 URL at a time.
-    start_urls = [
-                  'https://www.livestockwaterrecycling.com/newsroom/featured.html' ]
-    name = "lwr_spider_featured"    
+    start_urls = ['https://www.livestockwaterrecycling.com/newsroom/featured.html' ]
+        
 
     ###
     # Function that parses a websites HTML source
@@ -30,7 +31,6 @@ class LWRSpider(scrapy.Spider):
         imageList = response.css(IMAGE_SELECTOR)
 
         
-
         # Iterate through every article found
         for articleIndx in range(len(titleList)):
 
