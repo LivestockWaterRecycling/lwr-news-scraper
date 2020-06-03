@@ -31,6 +31,9 @@ class LWRSpiderPress(scrapy.Spider):
         titleList = response.css(ARTICLE_SELECTOR)
         contentList = response.css(CONTENT_SELECTOR)
         imageList = response.css(IMAGE_SELECTOR)
+        
+        print(contentList)
+
 
         # Iterate through every article found
         for articleIndx in range(len(titleList)):
@@ -40,7 +43,7 @@ class LWRSpiderPress(scrapy.Spider):
             TITLE_EXTENSION = 'a ::text'
             DESCRIPTION_EXTENSION = 'p ::text'
             # xPath
-            LINK_EXTENSION = 'a/@href'
+            LINK_EXTENSION = 'p/a/@href'
             IMAGE_EXTENSION = 'img/@src'
             
             # Will append to end of this string when constructing image link.
@@ -50,7 +53,7 @@ class LWRSpiderPress(scrapy.Spider):
             yield {
                 'title': titleList[articleIndx].css(TITLE_EXTENSION).extract_first(),
                 'content': contentList[articleIndx].css(DESCRIPTION_EXTENSION).extract_first(),
-                'link': titleList[articleIndx].xpath(LINK_EXTENSION).extract_first(),
+                'link': contentList [articleIndx].xpath(LINK_EXTENSION).extract_first(),
                 'image': IMAGE_URL_START + imageList[articleIndx].xpath(IMAGE_EXTENSION).extract_first(),
             }
 

@@ -53,7 +53,7 @@ class LWRSpiderFeatured(scrapy.Spider):
             yield {
                 'title': titleList[articleIndx].css(TITLE_EXTENSION).extract_first(),
                 'content': contentList[articleIndx].css(DESCRIPTION_EXTENSION).extract_first(),
-                'link': titleList[articleIndx].xpath(LINK_EXTENSION).extract_first(),
+                'link': IMAGE_URL_START + titleList[articleIndx].xpath(LINK_EXTENSION).extract_first(),
                 'image': IMAGE_URL_START + imageList[articleIndx].xpath(IMAGE_EXTENSION).extract_first(),
             }
 
