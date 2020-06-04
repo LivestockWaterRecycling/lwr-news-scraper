@@ -1,9 +1,9 @@
-###
-# This program uses scrapy to 'crawl' or 'spider' through the news/featured page of the LWR Website.
-#
-# Author: Oscar Jaimes
-# Date: 29/05/2020
-###
+'''
+This program uses scrapy to 'crawl' or 'spider' through the news/featured page of the LWR Website.
+
+Author: Oscar Jaimes
+Date: 29/05/2020
+'''
 
 import scrapy
 
@@ -19,10 +19,11 @@ class LWRSpiderFeatured(scrapy.Spider):
         'FEED_URI': 'featured.json',
     }
 
-    ###
-    # Function that parses a websites HTML source
-    # @param response - HTML response
-    ###
+
+    '''
+    Function that parses a websites HTML source
+    @param response - HTML response
+    '''
     def parse(self, response):
         # extension for different sections of a given article
         ARTICLE_SELECTOR = '.uk-panel-title'

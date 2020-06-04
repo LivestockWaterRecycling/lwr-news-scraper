@@ -1,9 +1,9 @@
-###
-# This program uses scrapy to 'crawl' or 'spider' through the newsroom/press page of the LWR Website.
-#
-# Author: Oscar Jaimes
-# Date: 29/05/2020
-###
+'''
+This program uses scrapy to 'crawl' or 'spider' through the newsroom/press page of the LWR Website.
+
+Author: Oscar Jaimes
+Date: 29/05/2020
+'''
 
 import scrapy
 
@@ -17,10 +17,10 @@ class LWRSpiderPress(scrapy.Spider):
         'FEED_URI': 'press.json',
     }
 
-    ###
-    # Function that parses a websites HTML source
-    # @param response - HTML response
-    ###
+    '''
+    Function that parses a websites HTML source
+    @param response - HTML response
+    '''
     def parse(self, response):
         # extension for different sections of a given article
         ARTICLE_SELECTOR = '.uk-panel-title'
@@ -43,7 +43,7 @@ class LWRSpiderPress(scrapy.Spider):
             TITLE_EXTENSION = 'a ::text'
             DESCRIPTION_EXTENSION = 'p ::text'
             # xPath
-            LINK_EXTENSION = 'p/a/@href'
+            LINK_EXTENSION = 'p/    a/@href'
             IMAGE_EXTENSION = 'img/@src'
             
             # Will append to end of this string when constructing image link.
