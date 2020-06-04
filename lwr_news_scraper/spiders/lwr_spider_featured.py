@@ -42,7 +42,12 @@ class LWRSpiderFeatured(scrapy.Spider):
             # Extensions for each field:
             # CSS:
             TITLE_EXTENSION = 'a ::text'
-            DESCRIPTION_EXTENSION = 'p ::text'
+
+            if 'Lisa' not in titleList[articleIndx].css(TITLE_EXTENSION).extract_first():
+                DESCRIPTION_EXTENSION = 'p ::text'
+            else:
+                DESCRIPTION_EXTENSION = 'ul'
+            
             # xPath
             LINK_EXTENSION = 'a/@href'
             IMAGE_EXTENSION = 'img/@src'
