@@ -93,3 +93,12 @@ Each Article object will be represented in JSON in the following form:
 ```
 The json files that this program generates holds an array of JSON Article objects. 
 So, when accessing through API, treat initial data as such.
+
+
+### HTML Parsing
+
+For Fast Facts articles, the body (content) is placed in a <li> (list) HTML element. This means that when scraping the website, we must identify which articles are fast facts in order to properly get the content. 
+ 
+The program is set up in a way that for a Fast Facts article, the JSON object property of 'content' for that particular article object will be a string of unparsed HTML. This means that we must parse the HTML to readable text in the application itself.
+
+You can find this in the _filterArticles()_ function in news.dart in the mobile application repository. 
