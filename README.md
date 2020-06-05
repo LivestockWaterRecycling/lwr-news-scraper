@@ -97,7 +97,7 @@ So, when accessing through API, treat initial data as such.
 
 ### HTML Parsing
 
-For Fast Facts articles, the body (content) is placed in a <li> (list) HTML element. This means that when scraping the website, we must identify which articles are fast facts in order to properly get the content. 
+For Fast Facts articles, the body (content) is placed in a list HTML element. This means that when scraping the website, we must identify which articles are fast facts in order to properly get the content. 
  
 The program is set up in a way that for a Fast Facts article, the JSON object property of 'content' for that particular article object will be a string of unparsed HTML. This means that we must parse the HTML to readable text in the application itself.
 
