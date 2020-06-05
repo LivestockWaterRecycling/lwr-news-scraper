@@ -42,7 +42,8 @@ class LWRSpiderFeatured(scrapy.Spider):
             # Extensions for each field:
             # CSS:
             TITLE_EXTENSION = 'a ::text'
-
+            
+            #FAST FACTS are formatted slightly differently, get proper description extension based on title. 
             if 'Lisa' not in titleList[articleIndx].css(TITLE_EXTENSION).extract_first():
                 DESCRIPTION_EXTENSION = 'p ::text'
             else:
