@@ -1,3 +1,4 @@
+![logo](https://www.livestockwaterrecycling.com/uploads/images/livestock-logo-img.png)
 # LWR News Scraper
 
 ## Purpose
