@@ -5,13 +5,12 @@
 
 The purpose of this program is to fetch news articles from the following news pages in the LWR website:
 - https://www.livestockwaterrecycling.com/newsroom/featured.html
-- https://www.livestockwaterrecycling.com/newsroom/press.html
 
-The reason these news articles are being extracted is to utlimately show news in the LWR mobile android/ios application:
+
+The reason these news articles are being extracted is to utlimately show news in My Plant (LWR's android/ios application):
 - [Application Repository](https://github.com/LivestockWaterRecycling/ipad-android-mobile-application)
 
 ## General Information
-
 - This repository should be public, as we can treat the output .json files the script produces as a nomal JSON API.
 - Note that this repositoryhas github pages enabled, which lets us host files that live on the master branch.
 - This means we can access these .json files through a url, as follows: 
@@ -47,11 +46,9 @@ Scrapy applications can be run from the command line, so that's how we will do i
 1. Open a terminal and navigate to the base directory of this project (i.e .../lwr-news-scraper/)
 2. Type this command into the terminal to run the crawler for news/press:  
 ```
-      scrapy crawl lwr_spider_press -o press.json
+      scrapy crawl lwr_spider_press -o featured.json
       
       NOTE: -o filename.json is the command line argument for the output file.
-      Make sure when running lwr_spider_press, the output file is press.json, abd
-      when running lwr_spider_featured, the output file is featured.json
   ```
   
    
@@ -75,8 +72,8 @@ Scrapy applications can be run from the command line, so that's how we will do i
 
 ```
 
-4. If no error messages appear in the output, there should now be a __.JSON__ file present in the base directory of the project titled,
-__featured.json__ or __press.json__, depending on which command you ran. As the name suggests, this file holds article objects in JSON format containing four fields: Title, content, link (url), and image url.
+4. If no error messages appear in the output, there should now be a __.JSON__ file present in the base directory of the project titled
+__featured.json__ . As the name suggests, this file holds article objects in JSON format containing four fields: Title, content, link (url), and image url.
 
 
 ### JSON Structure
@@ -100,6 +97,6 @@ So, when accessing through API, treat initial data as such.
 
 For Fast Facts articles, the body (content) is placed in a list HTML element. This means that when scraping the website, we must identify which articles are fast facts in order to properly get the content. 
  
-The program is set up in a way that for a Fast Facts article, the JSON object property of 'content' for that particular article object will be a string of unparsed HTML. This means that we must parse the HTML to readable text in the application itself.
+The program is set up in a way that for a Fast Facts article, the JSON object property of 'content' for that particular article object will be a string of unparsed HTML. This means that we must parse the HTML to readable text in the mobile application itself.
 
 You can find this in the _filterArticles()_ function in news.dart in the mobile application repository. 
