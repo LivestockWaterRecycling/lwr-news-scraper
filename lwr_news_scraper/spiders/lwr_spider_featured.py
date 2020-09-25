@@ -16,15 +16,20 @@ class LWRSpiderFeatured(scrapy.Spider):
         
 
     custom_settings = {
-        'FEED_URI': 'featured.json',
+        'FEED_URI': '../../featured.json',
     }
+    
 
 
+    
     '''
     Function that parses a websites HTML source
     @param response - HTML response
     '''
     def parse(self, response):
+
+        open('../../featured.json', 'w').close()
+
         # extension for different sections of a given article
         ARTICLE_SELECTOR = '.uk-panel-title'
         CONTENT_SELECTOR = '.uk-margin'
@@ -34,7 +39,6 @@ class LWRSpiderFeatured(scrapy.Spider):
         titleList = response.css(ARTICLE_SELECTOR)
         contentList = response.css(CONTENT_SELECTOR)
         imageList = response.css(IMAGE_SELECTOR)
-
         
         # Iterate through every article found
         for articleIndx in range(len(titleList)):
@@ -55,6 +59,8 @@ class LWRSpiderFeatured(scrapy.Spider):
             
             # Will append to end of this string when constructing image link.
             IMAGE_URL_START = 'https://www.livestockwaterrecycling.com/'
+
+            
 
             # resulting dictionary/map of each article object
             yield {
