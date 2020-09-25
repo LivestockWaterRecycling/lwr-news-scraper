@@ -18,7 +18,7 @@ class LWRSpiderFeatured(scrapy.Spider):
         'https://www.livestockwaterrecycling.com/newsroom/featured.html']
 
     custom_settings = {
-        'FEED_URI': '../../featured.json',
+        'FEED_URI': 'featured.json',
     }
 
     '''
@@ -28,7 +28,7 @@ class LWRSpiderFeatured(scrapy.Spider):
 
     def parse(self, response):
 
-        open('../../featured.json', 'w').close()
+        open('featured.json', 'w').close()
 
         # extension for different sections of a given article
         ARTICLE_SELECTOR = '.uk-panel-title'
@@ -68,8 +68,3 @@ class LWRSpiderFeatured(scrapy.Spider):
                 'image': IMAGE_URL_START + imageList[articleIndx].xpath(IMAGE_EXTENSION).extract_first(),
             }
 
-
-if __name__ == "__main__":
-  process = CrawlerProcess()
-  process.crawl(LWRSpiderFeatured)
-  process.start()
