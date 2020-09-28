@@ -16,7 +16,7 @@ The reason these news articles are being extracted is to utlimately show news in
 - This means we can access these .json files through a url, as follows: 
    * __featured.json__: https://livestockwaterrecycling.github.io/lwr-news-scraper/featured.json
 
-- Ultimately, we want to configure this script to run every couple of days or so in order for the data to stay updated. This process can be automated by creating a bash script to launch the program and automating a commit and push to the repository.
+- The .sh files found in this repository, __runscrape.sh__ and __push.sh__ are scheduled to execute every Friday at 1:30pm and 1:35pm, respectively on the IBM Windows Server. The former script executes the scrapy spider and generates the JSON output. The latter script adds the changes to git, and then commits to the master branch. The GitHub pages for this repository update automatically with each push (if push was on master).
 
 ## Getting Started
 
