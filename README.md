@@ -33,11 +33,9 @@ You can follow [this guide](https://docs.scrapy.org/en/latest/intro/install.html
 
 If you ever need to edit the code that actually scrapes the data, the assosciated python files are located in lwr_news_scraper/spiders/... 
 
-The spiders folder contains all the crawlers in this project. In our case, it contains two: 
-* __lwr_spider_press.py__
+The spiders folder contains all the crawlers in this project. In our case, it contains one: 
 * __lwr_spider_featured.py__
 
-The reason we need two different spiders/crawlers is that the HTML structure of the press and featured page differ slightly. When first wrtiting this program, it was assumed that both pages shared the same HTML structure and cause bugs when trying to scrape the image URL. Keep this in mind if more sites are added to the program.
 
 ### Running the program
 
