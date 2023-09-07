@@ -27,3 +27,11 @@ jobs:
 
     - name: Run Python script
       run: python -m scrapy crawl lwr_spider_featured -o featured.json
+
+    - name: Commit and push the output
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<oscar.jaimes@livestockwaterrecycling.com>"
+        git add featured.json
+        git commit -m "Update featured.json from workflow"
+        git push
