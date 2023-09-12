@@ -17,7 +17,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.9.6'
+        python-version: '3.9'
 
     - name: Install dependencies
       run: |
@@ -33,5 +33,9 @@ jobs:
         git config user.name "GitHub Actions Bot"
         git config user.email "<oscar.jaimes@livestockwaterrecycling.com>"
         git add featured.json
-        git commit -m "Update featured.json from workflow"
-        git push
+        if git diff --cached --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Update featured.json from workflow"
+          git push
+        fi
