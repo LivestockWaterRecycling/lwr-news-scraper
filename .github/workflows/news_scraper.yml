@@ -37,5 +37,5 @@ jobs:
           echo "No changes to commit"
         else
           git commit -m "Update featured.json from workflow"
-          git push
+          git push -f
         fi
