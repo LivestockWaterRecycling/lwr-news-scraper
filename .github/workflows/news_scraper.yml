@@ -19,10 +19,16 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: Install dependencies
+
+    - name: Install system dependencies
+      run: |
+          sudo apt-get update
+          sudo apt-get install -y libxml2-dev libxslt-dev
+
+    - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install Scrapy libxml2 libxslt
+        python -m pip install Scrapy
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Run Python script
