@@ -23,16 +23,14 @@ jobs:
     - name: Install system dependencies
       run: |
           sudo apt-get update
-          sudo apt-get install -y libxml2-dev libxslt-dev
 
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install Scrapy
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Run Python script
-      run: python -m scrapy crawl lwr_spider_featured -o featured.json
+      run: python lwr_news_scraper.py
 
     - name: Commit and push the output
       run: |
