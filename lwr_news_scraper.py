@@ -21,9 +21,6 @@ NEWS_URL = 'https://www.livestockwaterrecycling.com/newsroom/featured/'
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def fetch_news(url: str) -> Optional[requests.Response]:
-    """
-    Fetch the news page content.
-    """
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -33,9 +30,6 @@ def fetch_news(url: str) -> Optional[requests.Response]:
         return None
 
 def parse_news(response: requests.Response) -> List[Dict[str, str]]:
-    """
-    Parse news articles from the response content.
-    """
     soup = BeautifulSoup(response.text, 'html.parser')
     html_articles = soup.find_all(class_='uk-panel uk-panel-space uk-width-1-1')
     formatted_articles = []
@@ -51,9 +45,6 @@ def parse_news(response: requests.Response) -> List[Dict[str, str]]:
     return formatted_articles
 
 def save_articles(articles: List[Dict[str, str]], filename: str = 'featured.json') -> None:
-    """
-    Save the parsed articles to a JSON file.
-    """
     try:
         with open(filename, 'w') as f:
             json.dump(articles, f, indent=4)
@@ -61,9 +52,6 @@ def save_articles(articles: List[Dict[str, str]], filename: str = 'featured.json
         logging.error(f"Failed to save articles: {e}")
 
 def main():
-    """
-    Main function to orchestrate fetching, parsing, and saving news articles.
-    """
     logging.info("Starting news article fetch process")
     response = fetch_news(NEWS_URL)
     if response:
