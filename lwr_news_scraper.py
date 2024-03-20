@@ -29,6 +29,9 @@ def fetch_news(url: str) -> Optional[requests.Response]:
         logging.error(f"Failed to retrieve the webpage: {e}")
         return None
 
+def has_non_empty_href(tag):
+    return tag.name == 'a' and tag.has_attr('href') and tag['href'].strip()
+
 def parse_news(response: requests.Response) -> List[Dict[str, str]]:
     soup = BeautifulSoup(response.text, 'html.parser')
     html_articles = soup.find_all(class_='uk-panel uk-panel-space uk-width-1-1')
@@ -37,9 +40,13 @@ def parse_news(response: requests.Response) -> List[Dict[str, str]]:
     for article in html_articles:
         title = article.find('h3').text.strip()
         content = article.find('div').text.strip()
+        a_tag = article.find(has_non_empty_href)
+        link = a_tag['href'] if a_tag is not None else None
+        
         formatted_articles.append({
             'title': title,
-            'content': content
+            'content': content,
+            'link': link
         })
 
     return formatted_articles
